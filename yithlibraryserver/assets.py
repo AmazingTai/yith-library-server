@@ -33,7 +33,6 @@ yithlibrary_js = Bundle(
     'js/jquery.confirmForm.js',
     'js/jquery.emailVerificationButton.js',
     'js/jquery.googleAnalyticsPreferenceForm.js',
-    'js/jquery.persona.js',
     'js/jquery.wizard.js',
     'js/app.js',
     filters='rjsmin',

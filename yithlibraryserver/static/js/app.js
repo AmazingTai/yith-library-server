@@ -37,8 +37,6 @@
 
 	$('.wizard').wizard();
 
-	$.persona(YITH.persona);
-
 	// Allow to close the popovers
 	$("[rel=popover]").popover({trigger: 'hover'}).click(function (event) {
             event.preventDefault();

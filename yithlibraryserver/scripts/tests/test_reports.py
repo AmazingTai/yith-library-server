@@ -262,16 +262,6 @@ class StatisticsReportTests(BaseReportTests):
             Session.add(identity3)
             self.add_passwords(user3, 15)
 
-            user4 = User(first_name='Alice',
-                         last_name='Doe',
-                         email='',
-                         email_verified=False,
-                         allow_google_analytics=False)
-            identity4 = ExternalIdentity(user=user1, provider='persona',
-                                         external_id='1')
-            Session.add(user4)
-            Session.add(identity4)
-
             user5 = User(first_name='Bob',
                          last_name='Doe',
                          email='',
@@ -322,15 +312,6 @@ class StatisticsReportTests(BaseReportTests):
             Session.add(user9)
             Session.add(identity9)
 
-            user10 = User(first_name='Travis',
-                          last_name='Doe',
-                          email='',
-                          email_verified=False,
-                          allow_google_analytics=False)
-            identity10 = ExternalIdentity(user=user1, provider='persona',
-                                          external_id='2')
-            Session.add(user10)
-            Session.add(identity10)
             Session.flush()
 
         sys.argv = ['notused', self.conf_file_path]
@@ -339,23 +320,22 @@ class StatisticsReportTests(BaseReportTests):
         self.assertEqual(result, None)
         stdout = sys.stdout.getvalue()
 
-        expected_output = """Number of users: 10
+        expected_output = """Number of users: 8
 Number of passwords: 45
-Verified users: 30.00%% (3)
-Users that allow Google Analytics cookie: 10.00%% (1)
+Verified users: 37.50%% (3)
+Users that allow Google Analytics cookie: 12.50%% (1)
 Identity providers:
-%(tab)sgoogle: 40.00%% (4)
-%(tab)stwitter: 30.00%% (3)
-%(tab)spersona: 20.00%% (2)
-%(tab)sfacebook: 10.00%% (1)
+%(tab)sgoogle: 50.00%% (4)
+%(tab)stwitter: 37.50%% (3)
+%(tab)sfacebook: 12.50%% (1)
 Email providers:
 %(tab)sexample.com: 66.67%% (2)
 %(tab)sOthers: 33.33%% (1)
-Users without email: 70.00%% (7)
+Users without email: 62.50%% (5)
 Most active users:
 %(tab)sPeter Doe <peter@example.com>: 20
 %(tab)sSusan Doe <susan@example2.com>: 15
 %(tab)sJohn Doe <john@example.com>: 10
-Users without passwords: 70.00%% (7)
+Users without passwords: 62.50%% (5)
 """ % {'tab': '\t'}
         self.assertEqual(stdout, expected_output)

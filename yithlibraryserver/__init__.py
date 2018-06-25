@@ -190,6 +190,7 @@ def main(global_config, **settings):
     # the user package needs to be included before twitter,
     # facebook and google
     config.include('yithlibraryserver.user')
+    config.registry.identity_providers = []
 
     config.include('yithlibraryserver.twitter')
 
@@ -201,8 +202,6 @@ def main(global_config, **settings):
 
     if config.registry.settings['liveconnect_auth_enabled']:
         config.add_identity_provider('Live Connect')
-
-    config.include('yithlibraryserver.persona')
 
     # assets
     config.include('yithlibraryserver.assets')

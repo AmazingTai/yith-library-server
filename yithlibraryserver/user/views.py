@@ -159,9 +159,6 @@ def logout(request):
         current_provider = request.session['current_provider']
         del request.session['current_provider']
 
-        if current_provider == 'persona':
-            location += '?force-persona-logout=true'
-
     return HTTPFound(location=location,
                      headers=forget(request))
 

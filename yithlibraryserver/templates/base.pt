@@ -26,7 +26,6 @@
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="https://login.persona.org/include.js"></script>
 
   </head>
   <body>
@@ -113,15 +112,6 @@
 
       var YITH = window.YITH || {};
       YITH.ga = ${request.google_analytics.json};
-      YITH.persona = {
-          loginUrl: "${request.route_path('persona_login')}",
-          logoutUrl: "${request.route_path('logout')}",
-          currentUser: "${current_user}",
-          currentProvider: "${current_provider}",
-          loginSelector: "#persona a",
-          logoutSelector: ".logout",
-          nextUrl: "${next}"
-      };
     </script>
     <script tal:repeat="url request.webassets_env['yithlibrary_js'].urls()"
 	    tal:attributes="src url"></script>
