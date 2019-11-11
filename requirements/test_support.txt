@@ -1,6 +1,7 @@
-WebTest==2.0.25
-freezegun==0.3.8
+WebTest==2.0.33
+freezegun==0.3.12
 nose==1.3.7
-six==1.10.0            # required by freezegun
-python-dateutil==2.6.0 # required by freezegun
-beautifulsoup4==4.5.3  # required by WebTest
+six==1.13.0            # required by freezegun
+python-dateutil==2.8.1 # required by freezegun
+soupsieve==1.9.5       # required by beautifulsoup4
+beautifulsoup4==4.8.1  # required by WebTest

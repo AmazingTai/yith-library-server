@@ -55,7 +55,7 @@ class LocaleNegotiatorTests(TestCase):
             'Accept-Language': 'de',  # german is not supported
         })
         request.registry = self.testapp.app.registry
-        self.assertEqual(locale_negotiator(request), None)
+        self.assertEqual(locale_negotiator(request), 'en')
 
         request = TestRequest.blank('', {}, headers={
             'Accept-Language': 'de, es',

@@ -29,4 +29,4 @@ def deform_translator(term):
 
 def locale_negotiator(request):
     available_languages = request.registry.settings['available_languages']
-    return request.accept_language.best_match(available_languages)
+    return request.accept_language.lookup(available_languages, default='en')

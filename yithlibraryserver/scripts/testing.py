@@ -53,7 +53,7 @@ class ScriptTests(unittest.TestCase):
     use_db = True
 
     def setUp(self):
-        fd, self.conf_file_path = tempfile.mkstemp()
+        fd, self.conf_file_path = tempfile.mkstemp(suffix='.ini')
         os.write(fd, CONFIG.encode('ascii'))
         if self.use_db:
             self.db_uri = get_test_db_uri()

@@ -355,7 +355,7 @@ class TokenEndpointTests(TestCase):
         res = self.testapp.post('/oauth2/endpoints/token', {
             'grant_type': 'authorization_code',
             'code': 'this-code-does-not-exist',
-        }, headers=headers, status=401)
+        }, headers=headers, status=400)
 
         self.assertEqual(res.json, {
             'error': 'invalid_grant',

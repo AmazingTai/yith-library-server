@@ -38,7 +38,7 @@ from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.exceptions import ConfigurationError
 from pyramid.path import AssetResolver
-from pyramid.session import SignedCookieSessionFactory
+from pyramid.session import JSONSerializer, SignedCookieSessionFactory
 from pyramid.settings import asbool
 
 from yithlibraryserver.config import read_setting_from_env
@@ -150,7 +150,9 @@ def main(global_config, **settings):
     # Setup of stuff used only in the tests
     if 'testing' in settings and asbool(settings['testing']):
         config.include('pyramid_mailer.testing')
-        config.set_session_factory(SignedCookieSessionFactory('testing'))
+        serializer = JSONSerializer()
+        session_factory = SignedCookieSessionFactory('testing', serializer=serializer)
+        config.set_session_factory(session_factory)
 
         # add test only views to make it easy to login and add
         # things to the session during the tests

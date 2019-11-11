@@ -23,7 +23,9 @@ from webob.compat import native_
 from pyramid.httpexceptions import HTTPBadRequest
 from pyramid.response import Response
 
-from oauthlib.common import to_unicode, bytes_type
+from oauthlib.common import to_unicode
+
+from yithlibraryserver.compat import binary_type
 
 
 def extract_params(request):
@@ -54,6 +56,6 @@ def response_from_error(error):
 
 def decode_base64(text, encoding='utf-8'):
     """Decode base64 string."""
-    if text and not isinstance(text, bytes_type):
+    if text and not isinstance(text, binary_type):
         text = text.encode(encoding)
     return to_unicode(base64.b64decode(text), encoding)

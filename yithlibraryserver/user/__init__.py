@@ -32,10 +32,10 @@ logger = logging.getLogger(__name__)
 def includeme(config):
     config.add_directive('add_identity_provider', add_identity_provider)
 
-    config.set_request_property(get_user, 'user', reify=True)
-    config.set_request_property(get_google_analytics,
-                                'google_analytics', reify=True)
-    config.set_request_property(get_gravatar, 'gravatar', reify=True)
+    config.add_request_method(get_user, 'user', reify=True)
+    config.add_request_method(get_google_analytics,
+                              'google_analytics', reify=True)
+    config.add_request_method(get_gravatar, 'gravatar', reify=True)
 
     config.add_route('login', '/login')
     config.add_route('register_new_user', '/register')
