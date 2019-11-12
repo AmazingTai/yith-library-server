@@ -7,6 +7,7 @@ python:
 addons:
   postgresql: "9.3"
 before_install:
+  - sudo service postgresql start 9.3
   - CONFIG_FILE=$(sudo -u postgres psql postgres -c "SHOW config_file;" -q -t | head -1)
   - echo "Postgresql config file is $CONFIG_FILE"
   - echo "max_prepared_transactions = 10" | sudo tee -a "$CONFIG_FILE"
