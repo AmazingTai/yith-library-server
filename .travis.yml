@@ -5,14 +5,12 @@ python:
   - "3.7"
   - "3.8"
 addons:
-  postgresql: "9.3"
+  postgresql: "9.4"
 before_install:
-  - sudo service postgresql start 9.3
   - CONFIG_FILE=$(sudo -u postgres psql postgres -c "SHOW config_file;" -q -t | head -1)
-  - echo "Postgresql config file is $CONFIG_FILE"
   - echo "max_prepared_transactions = 10" | sudo tee -a "$CONFIG_FILE"
   - sudo cat "$CONFIG_FILE"
-  - sudo service postgresql restart 9.3
+  - sudo service postgresql restart 9.4
 install:
   - python setup.py sdist --formats=zip
   - pip install dist/*.zip
